@@ -219,7 +219,7 @@ neverallow { domain -system_server } security_file:lnk_file { create setattr unl
 # init starts in kernel domain and switches to init domain via setcon in
 # the init.rc, so the setenforce occurs while still in kernel. After
 # switching domains, there is never any need to setenforce again by init.
-neverallow domain kernel:security setenforce;
+neverallow { domain -recovery } kernel:security setenforce;
 neverallow { domain -kernel } kernel:security setcheckreqprot;
 
 # No booleans in AOSP policy, so no need to ever set them.
@@ -231,7 +231,7 @@ neverallow domain kernel:security setbool;
 neverallow { domain -init } kernel:security setsecparam;
 
 # Only init, ueventd and system_server should be able to access HW RNG
-neverallow { domain -init -system_server -ueventd -unconfineddomain } hw_random_device:chr_file *;
+neverallow { domain -init -system_server -ueventd -unconfineddomain -qrngd } hw_random_device:chr_file *;
 
 # Ensure that all entrypoint executables are in exec_type.
 neverallow domain { file_type -exec_type }:file entrypoint;
@@ -278,6 +278,7 @@ neverallow {
     userdebug_or_eng(`-su')
     -system_server
     -zygote
+    -mediaserver
 } { file_type -system_file -exec_type }:file execute;
 neverallow {
     domain
@@ -298,7 +299,7 @@ neverallow { domain -recovery } rootfs:file { create write setattr relabelto app
 
 # Restrict context mounts to specific types marked with
 # the contextmount_type attribute.
-neverallow domain {fs_type -contextmount_type}:filesystem relabelto;
+neverallow domain {fs_type -contextmount_type -sdcard_posix}:filesystem relabelto;
 
 # Ensure that context mount types are not writable, to ensure that
 # the write to /system restriction above is not bypassed via context=
