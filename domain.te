@@ -409,6 +409,7 @@ neverallow {
   -fast-dormancy
   -iddd
   -mediaserver
+  -netmgrd
   -nvimport
   -ppd
   -qmux
