@@ -409,6 +409,7 @@ neverallow {
   -iddd
   -mediaserver
   -netmgrd
+  -nfc
   -nvimport
   -ppd
   -qmux
