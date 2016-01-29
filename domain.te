@@ -402,6 +402,8 @@ neverallow domain { file_type fs_type dev_type }:{ lnk_file fifo_file sock_file 
 neverallow {
   domain
   -atfwd
+  -cal_data_manager
+  -chargemon
   -fast-dormancy
   -iddd
   -mediaserver
@@ -419,7 +421,8 @@ neverallow {
   -ta_rmt_service
   -tad
   -touchd
-  -updatemiscta }
+  -updatemiscta
+  -usbeng }
   {
   file_type
   -system_file      # needs to die. b/20013628
