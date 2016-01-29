@@ -402,6 +402,7 @@ neverallow domain { file_type fs_type dev_type }:{ lnk_file fifo_file sock_file 
 neverallow {
   domain
   -atfwd
+  -bridge
   -cal_data_manager
   -chargemon
   -fast-dormancy
