@@ -408,6 +408,7 @@ neverallow {
   -fast-dormancy
   -iddd
   -mediaserver
+  -mpdecision
   -netmgrd
   -nfc
   -nvimport
